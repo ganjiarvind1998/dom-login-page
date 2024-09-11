@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(224, 121, 23);
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .input-field {
+            margin: 5px 0;
+            background-color: cornflowerblue
+
+        }
+        .box {
+            border: 1px solid #111814;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 250px;
+            position: relative;
+        }
+        .remove-btn {
+            background-color: rgb(35, 117, 60);
+            color: white;
+            border: none;
+            padding: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        #box-container {
+            margin-top: 20px;
+        }
+        #submitBtn{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+         <label for="firstName">first Name</label>
+        <input type="text" id="firstName" class="input-field"><br>
+        
+        <label for="lastName">last Name</label>
+        <input type="text" id="lastName" class="input-field"><br>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" class="input-field"><br>
+        
+        <label for="contact">contact No</label>
+        <input type="text" id="contact" class="input-field"><br>
+
+        <button id="submitBtn">submit</button>
+    </div>
+
+    <div id="box-container"></div>
+
+    <script>
+   
+         var firstName = document.getElementById('firstName');
+        var lastName = document.getElementById('lastName');
+        var email = document.getElementById('email');
+        var contact = document.getElementById('contact');
+        var submitBtn = document.getElementById('submitBtn');
+        var boxContainer = document.getElementById('box-container');
+
+
+        submitBtn.addEventListener('click', function() {
+ 
+            var box = document.createElement('div');
+            box.classList.add('box');
+
+
+            box.innerHTML = `
+                <p>First Name:${firstName.value}</p>
+                <p>Last Name: ${lastName.value}</p>
+                <p>Email: ${email.value}</p>
+                <p>Contact No: ${contact.value}</p>
+            `;
+
+        
+            var removeBtn = document.createElement('button');
+            removeBtn.classList.add('remove-btn');
+            removeBtn.textContent = 'X';
+
+            
+            box.appendChild(removeBtn);
+
+        
+            boxContainer.appendChild(box);
+
+            
+            firstName.value = '';
+            lastName.value = '';
+            email.value = '';
+            contact.value = '';
+
+            
+            removeBtn.addEventListener('click', function() {
+                boxContainer.removeChild(box);
+            });
+        });
+    </script>
+
+</body>
+</html>
